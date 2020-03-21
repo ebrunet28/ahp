@@ -96,15 +96,3 @@ class Accessor:
         response = requests.get(url)
         assert response
         return response
-
-    @staticmethod
-    def _get_status_code(response: requests.Response):
-        return response.status_code
-
-    @staticmethod
-    def _get_content(response: requests.Response):
-        return response.content
-
-    @staticmethod
-    def _get_text(response: requests.Response):
-        return response.text

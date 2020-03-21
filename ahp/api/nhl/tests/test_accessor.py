@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 
 from ahp.api.nhl.accessor import Accessor
 
-# TODO find a way to share patch between methods
+# TODO find a way to share patch between methods (maybe through setUp)
 
 
 class TestAccessor(unittest.TestCase):
@@ -17,6 +17,7 @@ class TestAccessor(unittest.TestCase):
         self._draft = [{"draft": 1}]
         self._draft_prospects = [{"draft_prospects": 1}]
         self._people = [{"people": 1}]
+        self._people_stats = [{"people_stats": 1}]
         self._schedule = [{"schedule": 1}]
         self._standings = [{"standings": 1}]
         self._standings_types = [{"standings_types": 1}]
@@ -25,7 +26,7 @@ class TestAccessor(unittest.TestCase):
         self._teams_roster = [{"teams_roster": 1}]
         self._teams_stats = [{"teams_stats": 1}]
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_awards(self, mock):
 
         mock.return_value.json.return_value = self._awards
@@ -38,7 +39,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._awards)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_conferences(self, mock):
 
         mock.return_value.json.return_value = self._conferences
@@ -51,7 +52,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._conferences)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_divisions(self, mock):
         mock.return_value.json.return_value = self._divisions
 
@@ -63,7 +64,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._divisions)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_draft(self, mock):
         mock.return_value.json.return_value = self._draft
 
@@ -75,7 +76,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._draft)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_draft_prospects(self, mock):
         mock.return_value.json.return_value = self._draft_prospects
 
@@ -87,7 +88,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._draft_prospects)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_people(self, mock):
         mock.return_value.json.return_value = self._people
 
@@ -95,7 +96,15 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._people)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
+    def test_get_people_stats(self, mock):
+        mock.return_value.json.return_value = self._people_stats
+
+        response = self._accessor.get_people_stats(id_=1)
+
+        self.assertListEqual(response, self._people_stats)
+
+    @patch("requests.get")
     def test_get_schedule(self, mock):
         mock.return_value.json.return_value = self._schedule
 
@@ -103,7 +112,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._schedule)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_standings(self, mock):
         mock.return_value.json.return_value = self._standings
 
@@ -111,7 +120,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._standings)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_standings_types(self, mock):
         mock.return_value.json.return_value = self._standings_types
 
@@ -119,7 +128,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._standings_types)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_stat_types(self, mock):
         mock.return_value.json.return_value = self._stat_types
 
@@ -127,7 +136,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._stat_types)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_teams(self, mock):
         mock.return_value.json.return_value = self._teams
 
@@ -139,7 +148,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._teams)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_teams_roster(self, mock):
         mock.return_value.json.return_value = self._teams_roster
 
@@ -147,7 +156,7 @@ class TestAccessor(unittest.TestCase):
 
         self.assertListEqual(response, self._teams_roster)
 
-    @patch("ahp.api.nhl.accessor.Accessor._get")
+    @patch("requests.get")
     def test_get_teams_stats(self, mock):
         mock.return_value.json.return_value = self._teams_stats
 
