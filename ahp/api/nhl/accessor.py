@@ -5,7 +5,6 @@ from ahp.api.nhl.constants import URL
 
 
 class Accessor:
-
     def __init__(self):
         self._url = URL
 
