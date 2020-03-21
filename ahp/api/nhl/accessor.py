@@ -1,7 +1,7 @@
 import requests
 from urllib.parse import urljoin
 
-from api.nhl.constants import URL
+from ahp.api.nhl.constants import URL
 
 
 class Accessor:
