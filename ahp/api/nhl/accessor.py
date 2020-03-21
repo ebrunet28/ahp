@@ -108,39 +108,3 @@ class Accessor:
     @staticmethod
     def _get_text(response: requests.Response):
         return response.text
-
-
-if __name__ == "__main__":
-
-    accessor = Accessor()
-
-    accessor.get_awards()
-    accessor.get_awards(id_=1)
-
-    accessor.get_conferences()
-    accessor.get_conferences(id_=1)
-
-    accessor.get_divisions()
-    accessor.get_divisions(id_=1)
-
-    accessor.get_draft()
-    accessor.get_draft(year=2019)
-    accessor.get_draft_prospects()
-    accessor.get_draft_prospects(id_=53727)
-
-    # TODO game
-
-    accessor.get_people(id_=8477474)
-    # accessor.get_people_stats(id_=8477474)  # TODO probably to combine with modifiers
-
-    accessor.get_schedule()
-
-    accessor.get_standings()
-    accessor.get_standings_types()
-
-    accessor.get_stat_types()
-
-    accessor.get_teams()
-    accessor.get_teams(id_=1)
-    accessor.get_teams_roster(id_=1)
-    accessor.get_teams_stats(id_=1)
