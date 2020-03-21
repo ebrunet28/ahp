@@ -1,2 +1,4 @@
-VERSION = "v1"
-URL = "https://statsapi.web.nhl.com/api/{}/".format(VERSION)
+from urllib.parse import urljoin
+
+VERSION = "v1/"
+URL = urljoin("https://statsapi.web.nhl.com/api/", VERSION)
